@@ -23,7 +23,7 @@ class LaundryWebsite(Website):
 	@http.route(['/order_submission/',], type='http', auth="public", website=True)
 	def submission_form(self, **post):
 		product_tmpl_ids=request.env['product.product'].sudo().search([('active','=',True),('detailed_type','=','service')])
-		service_type_ids=request.env['washing.type'].sudo().search([])
+		service_type_ids=request.env['washing.type'].sudo().search([('is_pos','=',False)])
 		values={'product_tmpl_ids':product_tmpl_ids,'service_type_ids':service_type_ids}
 		return request.render("laundry_management.order_submission_form",values)
 
