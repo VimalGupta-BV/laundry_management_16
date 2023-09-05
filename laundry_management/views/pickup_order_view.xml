@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="sequence_pickup_order" model="ir.sequence">
+            <field name="name">pickup.order Code</field>
+            <field name="code">pickup.order</field>
+            <field eval="4" name="padding" />
+            <field name="prefix">CPO</field>
+        </record>
+
+
+        <record id="pickup_order_tree_view" model="ir.ui.view">
+            <field name="name">pickup.order.tree</field>
+            <field name="model">pickup.order</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false">
+                    <field name="create_date"/>
+                    <field name="name"/>
+                    <field name="laundry_id"/>
+                    <button type="object" name="action_order_view" string="Open Order"/>
+                    <field name="partner_id"/>
+                    <field name="pickup_date"/>
+                   <field name="employee_id"/>
+                    <field name="assidned_date"/>
+                    <field name="picked_date"/>
+                    <field name="state"/>
+                    <button type="action" string="Assign Pickup Person" states="ready" name="%(laundry_management.action_assign_delivery_person)d"  class="oe_hightlight" context="{'pickup':'1'}"/>
+                    <button type="action" string="Pickup" name="%(laundry_management.action_wz_picked)d"   class="oe_hightlight" states="assigned_pickup"/>
+                  
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_pickup_order" model="ir.actions.act_window">
+            <field name="name">Deliery Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pickup.order</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="laundry_order_status" name="Order Status" parent="laundry_management.laundry_management_menu" sequence="3"/>
+
+
+        <menuitem id="bv_picup_order" name="Pickup Orders" parent="laundry_management.laundry_order_status" action="action_pickup_order" sequence="1"/>
+    </data>
+</odoo>

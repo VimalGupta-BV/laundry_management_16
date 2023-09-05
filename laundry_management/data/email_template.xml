@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+	<odoo noupdate="1">
+
+		<record id="email_template_order_ready" model="mail.template">
+	        <field name="name">Order Ready for Delivery</field>
+	        <field
+	            name="email_from"
+	        >{{ (object.laundry_person.email and '%s &lt;%s&gt;' % (object.laundry_person.name, object.laundry_person.email) or '') }}</field>
+	        <field
+	            name="subject"
+	        >Order  (Ref {{ object.name or 'n/a' }}) - Ready for Delivery</field>
+	        <field name="model_id" ref="model_laundry_order" />
+	        <!-- <field name="lang">{{object.partner_id.lang }}</field> -->
+	        <field name="body_html" type="html">
+	            <p style="font-weight:bold;">Dear :  <span  t-out="object.partner_id.name or ''"/>,</p>
+ 				<p style="font-weight:bold;">Order No. : <span  t-out="object.name or ''"/> Ready for Delivery</p>
+	        </field>
+    	</record>
+
+    </odoo>

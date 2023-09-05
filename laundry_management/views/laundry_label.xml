@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <template id="laundry_order_label">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="obj">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <t t-foreach='obj.order_lines' t-as="line">
+                                <div class="row" style="border: 2px solid black;border-spacing:0;margin-bottom:0;height:122px;margin-top:10px">
+                                    <div class="col-4 text-left" style="margin-left:10px">
+                                        <p><b>Customer Name: <span t-esc="line.laundry_obj.partner_id.name"/></b></p>
+                                        <p><b>Cloth Name: <span t-esc="line.product_id.name"/></b></p>
+                                        <p><b>Order No.: <span t-esc="line.laundry_obj.name"/></b></p>
+                                    </div>
+                                    <div class="col-4">
+                                        <p><b>Laundry Person: <span t-esc="line.laundry_obj.partner_id.name"/></b></p>
+                                       <p> <b>Qty recieved: <span t-esc="line.qty"/></b></p>
+                                       <p> <b>Other Work: <span t-esc="line.extra_work.name"/></b></p>
+                                    </div>
+                                    <div class="col-4 text-right" >
+                                       <p> <b>Tracking Code: <span t-esc="line.name"/></b></p>
+                                        <p><b>Wash Type: <span t-esc="line.washing_type.name"/></b></p>                                
+                                    </div>
+
+                                </div>
+
+                                <hr></hr>
+                                <i class="fa fa-scissors" style="color:red"></i>
+                            </t>
+                            
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+<!--        <report-->
+<!--                string="Laundry Order Label"-->
+<!--                id="laundry_label"-->
+<!--                model="laundry.order"-->
+<!--                report_type="qweb-pdf"-->
+<!--                name="laundry_management.laundry_order_label"-->
+<!--                file="laundry_management.laundry_order_label"/>-->
+
+
+        <record id="laundry_label" model="ir.actions.report">
+            <field name="name">Laundry Order Label</field>
+            <field name="model">laundry.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">laundry_management.laundry_order_label</field>
+            <field name="report_file">laundry_management.laundry_order_label</field>
+            <field name="binding_model_id" ref="model_laundry_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

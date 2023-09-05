@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="sequence_laundry_delivery" model="ir.sequence">
+            <field name="name">Laundry Delivery Order Code</field>
+            <field name="code">wash.delivery.order</field>
+            <field eval="4" name="padding" />
+            <field name="prefix">DO</field>
+        </record>
+
+
+        <record id="washing_delivery_tree_view" model="ir.ui.view">
+            <field name="name">wash.delivery.order.tree</field>
+            <field name="model">wash.delivery.order</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false">
+                    <field name="create_date"/>
+                    <field name="name"/>
+                    <field name="laundry_id"/>
+                    <button type="object" name="action_order_view" string="Open Order"/>
+                    <field name="partner_id"/>
+                    <field name="employee_id"/>
+                    <field name="assidned_date"/>
+                    <field name="state"/>
+                    <button type="action" string="Assign Delivery Person" states="ready" name="%(laundry_management.action_assign_delivery_person)d"  class="oe_hightlight" context="{'delivery':'1'}"/>
+                    <button type="action" string="Delivered"  class="oe_hightlight" name="%(laundry_management.action_wz_delivered)d"  />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_washing_delivery" model="ir.actions.act_window">
+            <field name="name">Deliery Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wash.delivery.order</field>
+            <field name="view_mode">tree</field>
+        </record>
+        
+
+
+        <menuitem id="laundry_delivery" name="Delivery Orders" parent="laundry_management.laundry_order_status" action="action_washing_delivery" sequence="4"/>
+    </data>
+</odoo>

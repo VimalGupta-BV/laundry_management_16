@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="wz_picked_form_view" model="ir.ui.view">
+            <field name="name">wz.picked.order.tree</field>
+            <field name="model">wz.picked.order</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group >
+                            <field name="pickup_id"  readonly="1"/>
+                             <field name="laundry_id"  readonly="1"/>
+                        </group>
+
+                      <separator string="Item Details"/>
+                            <field name="line_ids" >
+                                <tree editable="bottom"> 
+                                    <field name="product_id"/>
+                                    <field name="qty" string="Request Qty" readonly="0" sum="total"/>
+                                    <field name="washing_type" />
+                                    <field name="picked_qty" string="Picked Qty" sum="total"/>
+                                    <field name="extra_product" invisible="1"/>
+
+                                </tree>
+                            </field>
+                    </sheet>
+
+                    <footer>
+                        <button
+                            name="order_picked_items"
+                            string="Picked"
+                            type="object"
+                            class="oe_highlight"                        
+                        />              
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wz_picked" model="ir.actions.act_window">
+            <field name="name">Picked Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wz.picked.order</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

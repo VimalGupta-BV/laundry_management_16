@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+    	<template id="order_submission_form">
+        	<t t-call="website.layout">
+        	
+        		<div id="request_form">
+                	<section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                    	<div class="container card rounded-3" style="margin-top:40px;margin-bottom:40px">
+                    		<center><h2 style="margin-top:20px">Order Submission Form</h2></center>
+                        	<form id="request_form" method="post" action="/order_submit/">
+                        		<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                            	<div class="s_website_form_rows row s_col_no_bgcolor">
+                            		<div class="form-group col-6 s_website_form_field s_website_form_required">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Your Name</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">
+                                            	<input type="text" class="form-control s_website_form_input" name="name" required=""/>
+                                        	</div>
+                                    	</div>
+                                	</div>
+
+                                	<div class="form-group col-6 s_website_form_field s_website_form_required" >
+                                		<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Delivery Type</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">                                            	
+                                            	<input type="radio" id="delivery_type" name="delivery_type" checked="checked"   value="home"/>
+												<label for="home">Home Delivery</label><br></br>
+												<input type="radio" id="delivery_type" name="delivery_type" value="shop"/>
+ 												<label for="shop">Collect from Shop</label><br></br>
+                                        	</div>
+
+                                    	</div>
+
+
+
+
+                                	</div>
+
+                                	
+
+                                	<!-- cloth and service type-->
+                                	<!-- <div class="form-group col-6 s_website_form_field s_website_form_required" style="margin-top:20px">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Dress</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">                                            	
+                                            	<select name="product_tmpl_id" class="form-control s_website_form_input product_tmpl_id " id='product_tmpl_id' required=""  data-live-search="true" multiple="multiple">
+				                                    <t t-foreach="product_tmpl_ids" t-as="product_tmpl_id">
+				                                        <option t-att-value="product_tmpl_id.id">
+				                                            <t t-esc="product_tmpl_id.name"/>
+				                                        </option>
+				                                    </t>
+				                                </select> 
+                                        	</div>
+                                    	</div>
+
+                                    </div>
+
+                                    <div class="form-group col-6 s_website_form_field s_website_form_required" style="margin-top:20px">
+
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Service Type</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">                                            	
+                                            	<select name="service_type_id" class="form-control s_website_form_input service_type_id " id='service_type_id' required=""  data-live-search="true">
+				                                    <t t-foreach="service_type_ids" t-as="service_type_id">
+				                                        <option t-att-value="service_type_id.id">
+				                                            <t t-esc="service_type_id.name"/>
+				                                        </option>
+				                                    </t>
+				                                </select> 
+                                        	</div>
+                                    	</div>
+
+                                    </div> -->
+                                	<!-- cloth and service type-->
+
+                                	<div class="form-group col-6 s_website_form_field s_website_form_required" style="margin-top:20px">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor" >
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Mobile</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">
+                                            	<input type="tel" class="form-control s_website_form_input" name="mobile" required=""/>
+                                        	</div>
+                                    	</div>
+                                	</div>
+
+                                	<div class="form-group col-6 s_website_form_field s_website_form_required" style="margin-top:20px">
+                                		
+
+
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Priority</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">                                            	
+                                            	<input type="radio" id="normal" name="priority_type" value="normal" checked="checked"  />
+												<label for="normal">Normal</label><br></br>
+												<input type="radio" id="urgent" name="priority_type" value="urgent"/>
+ 												<label for="urgent">Urgent</label><br></br>
+                                        	</div>
+
+                                    	</div>
+
+                                    	<!-- <ul class="personal-details">		
+											<li>
+												<ul class="column">			
+													<li>
+														<label for="NameOfVessel">Name of Vessel</label>
+														<input id="NameOfVessel" type="text" name="NameOfVessel" class="field-style field-split25 align-left" placeholder="Name of Vessel" />	
+													</li>
+												</ul>
+											</li>
+											<li>
+												<ul class="column">			
+													<li>
+														<label for="TypeOfVessel">Type of Vessel</label>
+														<input id="TypeOfVessel" type="text" name="TypeOfVessel" class="field-style field-split25 align-left" placeholder="Type of Vessel" />	
+													</li>			
+												</ul>
+											</li>
+											<li>
+												<ul class="column">			
+													<li>
+														<label for="Flag">Flag</label>
+														<input id="Flag" type="text" name="Flag" class="field-style field-split25 align-left" placeholder="Flag" />	
+													</li>			
+												</ul>
+											</li>	
+										</ul>
+ -->
+                                	</div>
+
+                                	<!-- Delivery Address-->
+
+                                	<div class="form-group col-6 s_website_form_field s_website_form_required" style="margin-top:20px">                                		
+											<div class="row s_col_no_resize s_col_no_bgcolor">
+	                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+	                                               	style="width: 200px" >
+	                                            	<span class="s_website_form_label_content">Delivery Address</span>
+	                                            	<span class="s_website_form_mark">*</span>
+	                                        	</label>
+	                                        	<div class="col-sm">
+	                                            	<input type="text" class="form-control s_website_form_input" name="address" required="" placeholder="Flat No, Building Name, Area Name*"/>
+	                                        	</div>
+		                                    </div>
+		                            </div>
+
+		                            <div class="form-group col-6 s_website_form_field s_website_form_required" style="margin-top:20px">                                		
+											<div class="row s_col_no_resize s_col_no_bgcolor">
+	                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+	                                               	style="width: 200px" >
+	                                            	<span class="s_website_form_label_content">Pickup Date</span>
+	                                            	<span class="s_website_form_mark"> </span>
+	                                        	</label>
+	                                        	<div class="col-sm">
+	                                            	<input type="date" class="form-control s_website_form_input" name="pickup_date" />
+	                                        	</div>
+		                                    </div>
+		                            </div>
+
+
+
+                                	<!-- Delivery Address-->
+                                	<!-- Product line-->
+                                	<div class="form-group col-12 s_website_form_field s_website_form_required product_details" style="margin-top:20px">
+
+                                		<table class="table table-striped">
+											 <thead>
+											    <tr>
+											      <th scope="col">Product</th>
+											      <th scope="col">Qty</th>
+											      <th scope="col">Service Type</th>
+											      <th scope="col"><button type="button" class="btn btn-primary add-row" id="add-row">Add More</button></th>
+											    </tr>
+											 </thead>
+											<tbody class="product-body">
+											    <tr class="line-details">
+											    	
+											    	<td>
+													    <select name="product_tmpl_id" class="form-control s_website_form_input product_tmpl_id " id='product_tmpl_id' required=""  data-live-search="true" >
+						                                    <t t-foreach="product_tmpl_ids" t-as="product_tmpl_id">
+						                                        <option t-att-value="product_tmpl_id.id">
+						                                            <t t-esc="product_tmpl_id.name"/>
+						                                        </option>
+						                                    </t>
+						                                </select> 
+											    	</td>
+											    	<td>
+											    		<input type="number" class="form-control s_website_form_input" name="qty" required="" min="1" value="1"/>
+											    	</td>
+											    	<td>
+													    <select name="service_type_id" class="form-control s_website_form_input service_type_id " id='service_type_id' required=""  data-live-search="true">
+						                                    <t t-foreach="service_type_ids" t-as="service_type_id">
+						                                        <option t-att-value="service_type_id.id">
+						                                            <t t-esc="service_type_id.name"/>
+						                                        </option>
+						                                    </t>
+						                                </select> 
+											    	</td>
+
+											    	<td>														
+														<button type="button" class="remove-row" id="remove-row" ><i class="fa fa-remove"/></button>
+											    	</td>
+											    	
+											    </tr>
+											    <tr class="add-before"></tr>
+											</tbody>
+										</table>
+
+                                	</div>
+
+
+                                	<!-- Product line-->
+
+                                	<div class="form-group col-12 s_website_form_submit" data-name="Submit Button" style="margin-top:20px;margin-bottom:20px">
+                                    	<div style="width: 200px;" class="s_website_form_label"/>
+                                    	 
+                                    	 <input type='submit' class="btn btn-primary btn-lg"></input>                                  	
+                                	</div>
+
+
+                            	</div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+        	</t>
+        </template>
+
+        <template id="order_success_page" name="Order Success Page">
+        	<t t-call="website.layout">
+        		<div class="card rounded-3" style="margin-top:40px; margin-bottom:40px">
+        			<center><h2 style="margin-top:20px">Thanks So Much for Your Order! </h2></center>
+        			<center><h2>Your order Reference No.: <span t-esc="order_id.name"/></h2></center>
+        		</div>
+
+        	</t>
+
+        </template>
+    </data>
+</odoo>

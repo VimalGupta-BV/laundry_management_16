@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="sequence_laundry_quality" model="ir.sequence">
+            <field name="name">Laundry Delivery Order Code</field>
+            <field name="code">wash.quality.check</field>
+            <field eval="4" name="padding" />
+            <field name="prefix">QC</field>
+        </record>
+
+
+        <record id="washing_quality_tree_view" model="ir.ui.view">
+            <field name="name">wash.quality.check.tree</field>
+            <field name="model">wash.quality.check</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false">
+                    <field name="create_date"/>
+                    <field name="name"/>
+                    <field name="laundry_id"/>
+                    <!-- <button type="object" name="action_order_view" string="Open Order"/> -->
+                    <field name="partner_id"/>                   
+                    <field name="state"/>
+                    <button type="action" string="Quality Check" states="ready" name="%(laundry_management.action_wz_quality)d"  class="oe_hightlight" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_washing_quality" model="ir.actions.act_window">
+            <field name="name">Quality Check </field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wash.quality.check</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+       <!--  <menuitem id="laundry_quality_check" name="Quality Check" parent="laundry_management.laundry_order_status" action="action_washing_quality" sequence="2"/> -->
+    </data>
+</odoo>

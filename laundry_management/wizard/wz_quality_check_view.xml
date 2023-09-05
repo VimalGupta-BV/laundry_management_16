@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="wz_quality_form_view" model="ir.ui.view">
+            <field name="name">wz.quality.check.tree</field>
+            <field name="model">wz.quality.check</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group >
+                            <field name="pickup_id"  readonly="1"/>
+                             <field name="laundry_id"  readonly="1"/>
+                        </group>
+
+                      <separator string="Item Details"/>
+                            <field name="line_ids"  readonly="1">
+                                <tree editable="bottom"> 
+                                    <field name="product_id"/>
+                                    <field name="qty" string="Request Qty" readonly="0" sum="total"/>
+                                    <field name="washing_type" />
+                                </tree>
+                            </field>
+                        <group>
+                            <field name="comment"/>
+                        </group>
+                    </sheet>
+
+                    <footer>
+                        <button
+                            name="order_quality"
+                            string="Quality Done"
+                            type="object"
+                            class="oe_highlight"                        
+                        />              
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wz_quality" model="ir.actions.act_window">
+            <field name="name">Quality Check</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wz.quality.check</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>
