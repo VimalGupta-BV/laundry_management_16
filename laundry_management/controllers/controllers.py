@@ -14,7 +14,6 @@ from odoo.exceptions import UserError
 from odoo.addons.auth_signup.models.res_users import SignupError
 
 from odoo.addons.web.controllers.home import Home,SIGN_UP_REQUEST_PARAMS
-from twilio.rest import Client
 from datetime import datetime, timedelta
 
 TAG_RE = re.compile(r'<[^>]+>')
