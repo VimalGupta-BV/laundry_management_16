@@ -211,7 +211,7 @@ class LaundryManagement(models.Model):
 
     priority_type=fields.Selection([
         ('normal', 'Normal'),
-        ('Urgent', 'Urgent'),
+        ('urgent', 'Urgent'),
         ],default="normal", string="Priority Type")
 
     pickup_date=fields.Date('Pickup Date')
